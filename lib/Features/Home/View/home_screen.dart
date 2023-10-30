@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
@@ -31,28 +30,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-           AppColors.white,
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(180),
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const CreateRequestScreen(),
-            ),
-          );
-        },
-        backgroundColor: AppColors.white,
-        child: const Icon(
-          Icons.add,
-          size: 40,
-          color: AppColors.buttonColorPrimary,
-        ),
-      ),
+      backgroundColor: AppColors.white,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(180),
+      //   ),
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => const CreateRequestScreen(),
+      //       ),
+      //     );
+      //   },
+      //   backgroundColor: AppColors.white,
+      //   child: const Icon(
+      //     Icons.add,
+      //     size: 40,
+      //     color: AppColors.buttonColorPrimary,
+      //   ),
+      // ),
       bottomNavigationBar: SnakeNavigationBar.color(
         selectedItemColor: AppColors.textButtonColor,
         backgroundColor: AppColors.textButtonColor,
@@ -98,27 +96,28 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Image.asset(_selectedIndex == 1
                   ? AppIcons.bottomNavBarIconSelected2
                   : AppIcons.bottomNavBarIconUnselected2),
-              label: 'edit'),
+              label: 'books'),
           BottomNavigationBarItem(
               icon: Image.asset(_selectedIndex == 2
                   ? AppIcons.bottomNavBarIconSelected3
                   : AppIcons.bottomNavBarIconUnselected3),
-              label: 'document'),
+              label: 'cart'),
           BottomNavigationBarItem(
               icon: Image.asset(_selectedIndex == 3
                   ? AppIcons.bottomNavBarIconSelected4
                   : AppIcons.bottomNavBarIconUnselected4),
-              label: 'help'),
+              label: 'wishlist'),
           BottomNavigationBarItem(
               icon: Image.asset(_selectedIndex == 4
                   ? AppIcons.bottomNavBarIconSelected5
                   : AppIcons.bottomNavBarIconUnselected5),
               label: 'profile'),
-          BottomNavigationBarItem(
-              icon: Container(),
-              activeIcon: Container(
-                color: AppColors.textButtonColor,
-              )),
+          // BottomNavigationBarItem(
+          //   icon: Container(),
+          //   activeIcon: Container(
+          //     color: AppColors.textButtonColor,
+          //   ),
+          // ),
         ],
       ),
       body: screenPagesBody[_selectedIndex],

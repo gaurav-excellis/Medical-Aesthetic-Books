@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +15,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       
         leading: Image.asset(AppIcons.drawerIcon),
         actions: [
           InkWell(
@@ -41,7 +39,6 @@ class HomePage extends StatelessWidget {
       body: Container(
         height: double.maxFinite,
         width: double.maxFinite,
-        
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
               decelerationRate: ScrollDecelerationRate.normal),
@@ -74,8 +71,6 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: TextFormField(
-                    
-                    
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       fillColor: Color(0xffEAF0FF),
@@ -90,8 +85,61 @@ class HomePage extends StatelessWidget {
                 Column(
                   children: [
                     ///carousel
-                    const HomePageCarousel(),
-
+                    // const HomePageCarousel(),
+                    Stack(
+                      alignment: Alignment(0.8, -1.2),
+                      children: [
+                        
+                        Container(
+                          height: 150.h,
+                          padding: EdgeInsets.only(right: 27.w),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: const Color(0xff2663ff),
+                          ),
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 16.w, bottom: 26.h, top: 18.h),
+                                    child: const Column(
+                                      children: [
+                                        Text(
+                                          "The Power of positive Thinking",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Lorem ipsum dolor sit amet consectetur. Dolor sit augue facilisis odio.",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Image.asset("Assets/Images/hands_book.png"),
+                              ]),
+                        ),
+                     
+                        Container(
+                          width: 71,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(29),
+                            color: Color(0xffffaf18),
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 31.h,
                     ),
