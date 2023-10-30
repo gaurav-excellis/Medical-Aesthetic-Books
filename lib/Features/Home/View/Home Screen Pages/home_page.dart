@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF5CFBF),
+       
         leading: Image.asset(AppIcons.drawerIcon),
         actions: [
           InkWell(
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         height: double.maxFinite,
         width: double.maxFinite,
-        decoration: AppStyles.introScreenContainerDecoration,
+        
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
               decelerationRate: ScrollDecelerationRate.normal),
@@ -74,8 +74,11 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: TextFormField(
+                    
+                    
                     decoration: const InputDecoration(
                       border: InputBorder.none,
+                      fillColor: Color(0xffEAF0FF),
                       prefixIcon: Icon(Icons.search_sharp),
                       hintText: "Search",
                     ),

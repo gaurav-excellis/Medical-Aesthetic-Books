@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
-          _selectedIndex == 0 ? const Color(0xFFBBDBF0) : AppColors.white,
+           AppColors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
