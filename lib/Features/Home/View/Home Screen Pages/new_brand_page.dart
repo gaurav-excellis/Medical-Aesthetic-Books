@@ -160,7 +160,7 @@ class NewBrandPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15.h,),
-            InkWell(onTap: (){},child: CustomButton(buttonText: "Submit"),),
+            InkWell(onTap: (){},child:const CustomButton(buttonText: "Submit"),),
             SizedBox(height: 15.h,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -173,7 +173,7 @@ class NewBrandPage extends StatelessWidget {
                 SizedBox(
                   width: 6.w,
                 ),
-                Text("How to fill in this brief?")
+               const Text("How to fill in this brief?")
               ],
             ),
             SizedBox(height: 23.h,),

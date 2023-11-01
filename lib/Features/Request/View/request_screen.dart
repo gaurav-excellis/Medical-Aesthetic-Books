@@ -22,7 +22,7 @@ class _RequestScreenState extends State<RequestScreen>
 
   @override
   void initState() {
-    _tabController = new TabController(
+    _tabController =  TabController(
         length: 2, vsync: this, initialIndex: _currentTabIndex);
     super.initState();
   }

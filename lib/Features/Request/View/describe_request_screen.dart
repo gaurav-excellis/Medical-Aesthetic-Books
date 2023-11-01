@@ -290,7 +290,7 @@ class _DescribeRequestScreenState extends State<DescribeRequestScreen> {
                 SizedBox(
                   width: 6.w,
                 ),
-                Text("How to fill in this brief?")
+               const  Text("How to fill in this brief?")
               ],
             ),
             SizedBox(height: 23.h,),

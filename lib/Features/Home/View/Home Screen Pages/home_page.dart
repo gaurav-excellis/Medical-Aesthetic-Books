@@ -6,6 +6,8 @@ import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_button.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card.dart';
+import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_horizontal_booklist.dart';
+import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_offer_widget.dart';
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,7 +24,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (newContext) => NotificationsScreen(),
+                    builder: (newContext) => const NotificationsScreen(),
                   ),
                 );
               },
@@ -36,7 +38,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
+      body: SizedBox(
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
@@ -65,15 +67,28 @@ class HomePage extends StatelessWidget {
                   height: 9.h,
                 ),
                 Container(
-                  height: 46.h,
+                  height: 50.h,
                   decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextFormField(
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       fillColor: Color(0xffEAF0FF),
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.activeDotColor, width: 2),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       prefixIcon: Icon(Icons.search_sharp),
                       hintText: "Search",
                     ),
@@ -86,118 +101,16 @@ class HomePage extends StatelessWidget {
                   children: [
                     ///carousel
                     // const HomePageCarousel(),
-                    Stack(
-                      alignment: Alignment(0.8, -1.2),
-                      children: [
-                        
-                        Container(
-                          height: 150.h,
-                          padding: EdgeInsets.only(right: 27.w),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: const Color(0xff2663ff),
-                          ),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 16.w, bottom: 26.h, top: 18.h),
-                                    child: const Column(
-                                      children: [
-                                        Text(
-                                          "The Power of positive Thinking",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Lorem ipsum dolor sit amet consectetur. Dolor sit augue facilisis odio.",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Image.asset("Assets/Images/hands_book.png"),
-                              ]),
-                        ),
-                     
-                        Container(
-                          width: 71,
-                          height: 28,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(29),
-                            color: Color(0xffffaf18),
-                          ),
-                        ),
-                      ],
-                    ),
+                    const HomePageOfferCard(),
+                    
+                    
                     SizedBox(
                       height: 31.h,
                     ),
+                    
 
-                    ///graphic design
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              color: AppColors.white,
-                            ),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                      "Assets/Icon/graphic_design1.png"),
-                                  SizedBox(
-                                    width: 13.w,
-                                  ),
-                                  const Text(
-                                    "Graphic\nDesign",
-                                    maxLines: 2,
-                                    style: AppStyles.subHeading1TextStyle,
-                                  ),
-                                ]),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(7),
-                              color: AppColors.white,
-                            ),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                      "Assets/Icon/graphic_design2.png"),
-                                  SizedBox(
-                                    width: 13.w,
-                                  ),
-                                  const Text(
-                                    "Web\nDesign",
-                                    maxLines: 2,
-                                    style: AppStyles.subHeading1TextStyle,
-                                  ),
-                                ]),
-                          ),
-                        ),
-                      ],
-                    ),
+                    const HorizontalBookList(),
+                    
 
                     SizedBox(
                       height: 25.h,
@@ -213,7 +126,7 @@ class HomePage extends StatelessWidget {
                       height: 30.h,
                     ),
 
-                    Container(
+                    SizedBox(
                       height: 230.h,
                       // color: Colors.red,
                       child: ListView.separated(
@@ -224,7 +137,7 @@ class HomePage extends StatelessWidget {
                           itemCount: 2,
                           itemBuilder: (context, index) {
                             return const HomeScreenCard(
-                              imageUrl: "Assets/Images/mobile_design.png",
+                              imageUrl: "Assets/Images/book2.png",
                               heading: "Mobile App Design",
                               currentPrice: "\$55.00 ",
                               previousPrice: "\$65.00 ",
@@ -246,7 +159,7 @@ class HomePage extends StatelessWidget {
                       height: 30.h,
                     ),
 
-                    Container(
+                    SizedBox(
                       height: 230.h,
                       // color: Colors.red,
                       child: ListView.separated(
@@ -383,6 +296,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
+
 class HomePageCarousel extends StatefulWidget {
   const HomePageCarousel({
     super.key,
@@ -461,7 +376,7 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
                             ),
                             CustomButton(
                               buttonText: "PICK YOUR PLAN",
-                              buttonColor: Color(0xff21EB8A),
+                              buttonColor: const Color(0xff21EB8A),
                               width: 134.w,
                               height: 31.h,
                               buttonIconSpacing: 6.w,

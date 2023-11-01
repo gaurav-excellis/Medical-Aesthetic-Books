@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 
@@ -23,7 +24,7 @@ class QueueScreen extends StatelessWidget {
             maxLines: 2,
             style: AppStyles.screenHeadingTextStyle,
           ),
-          SizedBox(height: 14,),
+           SizedBox(height: 14.h,),
 
          const Text(
         "Lorem ipsum dolor sit amet consectetur. Nisi nunc morbi enim viverra aliquam ac tortor sit egestas. Venenatis rhoncus placerat at ac mi id dui hendrerit sed.",

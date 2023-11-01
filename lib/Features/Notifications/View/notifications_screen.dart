@@ -3,7 +3,7 @@ import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 
 class NotificationsScreen extends StatelessWidget {
-  NotificationsScreen({Key? key}) : super(key: key);
+  const NotificationsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

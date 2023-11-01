@@ -12,10 +12,10 @@ class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  _IntroScreenState createState() => _IntroScreenState();
+  IntroScreenState createState() => IntroScreenState();
 }
 
-class _IntroScreenState extends State<IntroScreen> {
+class IntroScreenState extends State<IntroScreen> {
   final List introImages = [
     {
       "image": AppIcons.intro1,
@@ -90,7 +90,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 child: Text(
                                   introImages[index]['headerText'],
                                   textAlign: TextAlign.center,

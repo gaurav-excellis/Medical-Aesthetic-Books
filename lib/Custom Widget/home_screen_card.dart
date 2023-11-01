@@ -83,7 +83,7 @@ class HomeScreenCard extends StatelessWidget {
               width: 26.w,
               decoration:const  BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.buttonColorPrimary),
+                  color: AppColors.green),
               child:const Icon(
                 Icons.add,
                 color: AppColors.white,

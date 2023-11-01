@@ -45,7 +45,7 @@ class _LandingPageIllustrationScreenState
           ),
           InkWell(
               onTap: () {
-                Get.to(NotificationsScreen());
+                Get.to(() => const NotificationsScreen());
               },
               child: Image.asset(AppIcons.notificationIcon)),
           SizedBox(
@@ -78,7 +78,7 @@ class _LandingPageIllustrationScreenState
                       "#12321",
                       style: AppStyles.smallTextStyle.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: Color(0xff0093FE),
+                        color: const Color(0xff0093FE),
                       ),
                     ),
                   ],

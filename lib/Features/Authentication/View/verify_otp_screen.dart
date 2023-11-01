@@ -83,7 +83,7 @@ class VerifyOtpScreen extends StatelessWidget {
                             obscureText: true,
                             fieldStyle: FieldStyle.box,
                             otpFieldStyle: OtpFieldStyle(
-                              backgroundColor: Color(0xffeaefff),
+                              backgroundColor: const Color(0xffeaefff),
                             ),
                             // onCompleted: (pin) {
                             //   print("Completed: " + pin);

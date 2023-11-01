@@ -235,7 +235,7 @@ class BrandProfileCardWidget extends StatelessWidget {
       ),
       child: Row(children: [
         Container(
-          margin: EdgeInsets.only(left: 12),
+          margin:const EdgeInsets.only(left: 12),
           height: 46.h,
           width: 48.w,
           decoration: BoxDecoration(
