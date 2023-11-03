@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
@@ -17,78 +16,69 @@ class HomeScreenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         Container(
-          height: 205.h,
-          width: MediaQuery.sizeOf(context).width * 0.4,
-          margin: const EdgeInsets.all(2),
+          margin: EdgeInsets.only(top: 120.h, bottom: 11.h),
+          height: 300.h,
+          width: MediaQuery.sizeOf(context).width * 0.45,
           decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(8),
-            image:  DecorationImage(
-                image: AssetImage(
-                  imageUrl,
-                ),
+              color: AppColors.lightBlue,
+              borderRadius: BorderRadius.circular(8)),
+        ),
+        Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                imageUrl,
                 fit: BoxFit.contain,
-                alignment: Alignment.topCenter),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-                left: 11, bottom: 10),
-            child: Column(
-                mainAxisAlignment:
-                    MainAxisAlignment.end,
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+              ),
+              Text(
+                heading,
+                style: AppStyles.subHeading1TextStyle.copyWith(fontSize: 12),
+              ),
+              Image.asset("Assets/Icon/5star_icon.png"),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    heading,
-                    style: AppStyles
-                        .subHeading1TextStyle
-                        .copyWith(fontSize: 12),
+                    currentPrice,
+                    style: AppStyles.normalTextStyle
+                        .copyWith(fontWeight: FontWeight.w600),
                   ),
-                  Image.asset(
-                      "Assets/Icon/5star_icon.png"),
-                  Row(
+                  Text(
+                    previousPrice,
+                    style: AppStyles.normalTextStyle.copyWith(
+                      fontSize: 10,
+                      color: AppColors.grey,
+                      decoration: TextDecoration.lineThrough,
+                      decorationColor: AppColors.grey,
+                    ),
+                  ),
+                  Column(
                     children: [
-                      Text(
-                        currentPrice,
-                        style: AppStyles.normalTextStyle
-                            .copyWith(
-                                fontWeight:
-                                    FontWeight.w600),
+                      const Text(""),
+                      SizedBox(
+                        height: 20.h,
                       ),
-                      Text(
-                        previousPrice,
-                        style: AppStyles.normalTextStyle
-                            .copyWith(
-                          fontSize: 10,
-                          color: AppColors.grey,
-                          decoration: TextDecoration
-                              .lineThrough,
-                          decorationColor:
-                              AppColors.grey,
+                      Align(
+                        child: Container(
+                          height: 26.h,
+                          width: 26.w,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: AppColors.green),
+                          child: const Icon(
+                            Icons.add,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ]),
-          ),
-        ),
-        Positioned(
-            right: 20.w,
-            bottom: 10.h,
-            child: Container(
-              height: 26.h,
-              width: 26.w,
-              decoration:const  BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.green),
-              child:const Icon(
-                Icons.add,
-                color: AppColors.white,
+                  )
+                ],
               ),
-            ))
+            ],),
       ],
     );
   }

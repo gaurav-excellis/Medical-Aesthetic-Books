@@ -1,3 +1,4 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,8 +6,10 @@ import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_button.dart';
+import 'package:medical_aesthetic_books/Custom%20Widget/custom_textfield.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card.dart';
-import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_horizontal_booklist.dart';
+import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card_2.dart';
+import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_newly_launched_widgets.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_offer_widget.dart';
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 
@@ -44,259 +47,479 @@ class HomePage extends StatelessWidget {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
               decelerationRate: ScrollDecelerationRate.normal),
-          padding: const EdgeInsets.all(24),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Hey Kumari!",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const Text(
-                  "Lorem ipsum dolor sit amet consectetur. ",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                SizedBox(
-                  height: 9.h,
-                ),
-                Container(
-                  height: 50.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      fillColor: Color(0xffEAF0FF),
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Hey Kumari!",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: AppColors.activeDotColor, width: 2),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                      const Text(
+                        "Lorem ipsum dolor sit amet consectetur. ",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
                         ),
                       ),
-                      prefixIcon: Icon(Icons.search_sharp),
-                      hintText: "Search",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 32.h,
-                ),
-                Column(
+                      SizedBox(
+                        height: 9.h,
+                      ),
+
+                      //SEARCH BOX
+                      Container(
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            fillColor: Color(0xffEAF0FF),
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.activeDotColor, width: 2),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            prefixIcon: Icon(Icons.search_sharp),
+                            hintText: "Search",
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 32.h,
+                      ),
+
+                      Column(
+                        children: [
+                          //TOP CARD
+                          const HomePageOfferCard(),
+
+                          SizedBox(
+                            height: 31.h,
+                          ),
+
+                          //HORIZONTAL BOOKS LIST
+                          SizedBox(
+                            height: 150.h,
+                            child: ListView.builder(
+                                itemCount: 10,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  List list = [
+                                    "ENT",
+                                    "Physical Therapy",
+                                    "Military Medicine",
+                                    "Anatomy"
+                                  ];
+                                  return Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12.w),
+                                    child: SizedBox(
+                                      width: 65.w,
+                                      child: InkWell(
+                                        onTap: () {
+                                          showFlexibleBottomSheet(
+                                            minHeight: 0,
+                                            initHeight: 0.9,
+                                            maxHeight: 1,
+                                            context: context,
+                                            builder: ((context,
+                                                scrollController,
+                                                bottomSheetOffset) {
+                                              return Material(
+                                                elevation: 2,
+                                                type: MaterialType.card,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      24.0),
+                                                  child: Column(
+                                                    children: [
+                                                      HeadingWidget(
+                                                        heading:
+                                                            list[index % 4],
+                                                        onTap: () {},
+                                                      ),
+                                                      Expanded(
+                                                        child: GridView.builder(
+                                                          itemCount: 15,
+                                                            gridDelegate:
+                                                               const SliverGridDelegateWithFixedCrossAxisCount(
+                                                              crossAxisCount: 2,
+                                                              mainAxisSpacing:
+                                                                  5,
+                                                              childAspectRatio: 2/3,
+                                                              crossAxisSpacing:
+                                                                  5,
+                                                            ),
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              return const HomeScreenCard2(
+                                                                imageUrl:
+                                                                    "Assets/Images/book2.png",
+                                                                heading:
+                                                                    "Mobile App Design",
+                                                                currentPrice:
+                                                                    "\$55.00 ",
+                                                                previousPrice:
+                                                                    "\$65.00 ",
+                                                              );
+                                                            }),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                            anchors: [0, 0.5, 1],
+                                            isSafeArea: true,
+                                            isCollapsible: true,
+                                            isModal: true,
+                                            barrierColor: Colors.black54,
+                                            bottomSheetBorderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                            ),
+                                            bottomSheetColor: AppColors.white,
+                                          );
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Image.asset(
+                                                "Assets/Images/book1.png"),
+                                            Expanded(
+                                                child: Text(
+                                              list[index % 4],
+                                              maxLines: 2,
+                                            )),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ),
+
+                          SizedBox(
+                            height: 25.h,
+                          ),
+
+                          ///feature collection
+                          HeadingWidget(
+                            heading: "Featured Collection",
+                            onTap: () {},
+                          ),
+
+                          SizedBox(
+                            height: 30.h,
+                          ),
+
+                          SizedBox(
+                            height: 300.h,
+                            //  color: Colors.green,
+                            child: ListView.separated(
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return SizedBox(width: 20.w);
+                                },
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 2,
+                                itemBuilder: (context, index) {
+                                  return const HomeScreenCard(
+                                    imageUrl: "Assets/Images/book2.png",
+                                    heading: "Mobile App Design",
+                                    currentPrice: "\$55.00 ",
+                                    previousPrice: "\$65.00 ",
+                                  );
+                                }),
+                          ),
+
+                          SizedBox(
+                            height: 25.h,
+                          ),
+
+                          Stack(
+                            alignment: const Alignment(-0.8, 1.2),
+                            children: [
+                              Container(
+                                height: 150.h,
+                                // padding: EdgeInsets.only(right: 27.w),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: AppColors.amber),
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 16.w,
+                                              bottom: 26.h,
+                                              top: 18.h),
+                                          child: const Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "SALE",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              Text(
+                                                "30% OFF",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Lorem ipsum dolor sit amet consectetur. Dolor sit augue facilisis odio.",
+                                                style: TextStyle(
+                                                  fontSize: 8,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Image.asset(
+                                          "Assets/Images/book_with_glass.png"),
+                                    ]),
+                              ),
+                              Container(
+                                width: 103.w,
+                                height: 26.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(29),
+                                  color: AppColors.green,
+                                ),
+                                child: const Center(
+                                  child: Text("Shop Now",
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ]),
+              ),
+              Container(
+                width: double.maxFinite,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+                color: AppColors.lightBlue,
+                child: Column(
                   children: [
-                    ///carousel
-                    // const HomePageCarousel(),
-                    const HomePageOfferCard(),
-                    
-                    
-                    SizedBox(
-                      height: 31.h,
-                    ),
-                    
-
-                    const HorizontalBookList(),
-                    
-
-                    SizedBox(
-                      height: 25.h,
-                    ),
-
-                    ///feature collection
                     HeadingWidget(
-                      heading: "Featured Collection",
+                      heading: "Newly Launched",
                       onTap: () {},
                     ),
-
                     SizedBox(
-                      height: 30.h,
-                    ),
-
-                    SizedBox(
-                      height: 230.h,
-                      // color: Colors.red,
-                      child: ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(width: 20.w);
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return const HomeScreenCard(
-                              imageUrl: "Assets/Images/book2.png",
-                              heading: "Mobile App Design",
-                              currentPrice: "\$55.00 ",
-                              previousPrice: "\$65.00 ",
-                            );
-                          }),
-                    ),
-
-                    SizedBox(
-                      height: 25.h,
-                    ),
-
-                    ///mobile app design
-                    HeadingWidget(
-                      heading: "Mobile App Designs",
-                      onTap: () {},
-                    ),
-
-                    SizedBox(
-                      height: 30.h,
-                    ),
-
-                    SizedBox(
-                      height: 230.h,
-                      // color: Colors.red,
-                      child: ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(width: 20.w);
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return const HomeScreenCard(
-                              imageUrl: "Assets/Images/mobile_design.png",
-                              heading: "Mobile App Design",
-                              currentPrice: "\$55.00 ",
-                              previousPrice: "\$65.00 ",
-                            );
-                          }),
-                    ),
-
-                    SizedBox(
-                      height: 25.h,
-                    ),
-
-                    ///website design
-                    HeadingWidget(
-                      heading: "Website Design",
-                      onTap: () {},
-                    ),
-
-                    SizedBox(
-                      height: 30.h,
-                    ),
-
-                    SizedBox(
-                      height: 230.h,
-                      // color: Colors.red,
-                      child: ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(width: 20.w);
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return const HomeScreenCard(
-                              imageUrl: "Assets/Images/mobile_design.png",
-                              heading: "Mobile App Design",
-                              currentPrice: "\$55.00 ",
-                              previousPrice: "\$65.00 ",
-                            );
-                          }),
-                    ),
-
-                    SizedBox(
-                      height: 25.h,
-                    ),
-
-                    ///ad banner
-                    Image.asset("Assets/Images/home_page_ad.png"),
-
-                    SizedBox(
-                      height: 30.h,
-                    ),
-
-                    ///logo design
-                    HeadingWidget(
-                      heading: "Logo Design",
-                      onTap: () {},
-                    ),
-
-                    SizedBox(
-                      height: 30.h,
-                    ),
-
-                    SizedBox(
-                      height: 230.h,
-                      // color: Colors.red,
-                      child: ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(width: 20.w);
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return const HomeScreenCard(
-                              imageUrl: "Assets/Images/mobile_design.png",
-                              heading: "Mobile App Design",
-                              currentPrice: "\$55.00 ",
-                              previousPrice: "\$65.00 ",
-                            );
-                          }),
-                    ),
-
-                    SizedBox(
-                      height: 25.h,
-                    ),
-
-                    ///digital marketing post
-                    HeadingWidget(
-                      heading: "Digital Marketing Post",
-                      onTap: () {},
-                    ),
-
-                    SizedBox(
-                      height: 30.h,
-                    ),
-
-                    SizedBox(
-                      height: 230.h,
-                      // color: Colors.red,
-                      child: ListView.separated(
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(width: 20.w);
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 2,
-                          itemBuilder: (context, index) {
-                            return const HomeScreenCard(
-                              imageUrl: "Assets/Images/mobile_design.png",
-                              heading: "Mobile App Design",
-                              currentPrice: "\$55.00 ",
-                              previousPrice: "\$65.00 ",
-                            );
-                          }),
-                    ),
-
-                    SizedBox(
-                      height: 25.h,
+                      height: 360.h,
+                      child: ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                            child: const HomePageNewlyLaunchedCard(),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
-              ]),
+              ),
+              Padding(
+                padding: EdgeInsets.all(24.r),
+                child: Column(
+                  children: [
+                    HeadingWidget(
+                      heading: "Best Selling",
+                      onTap: () {},
+                    ),
+                    SizedBox(
+                      height: 290.h,
+                      //  color: Colors.green,
+                      child: ListView.separated(
+                          separatorBuilder: (BuildContext context, int index) {
+                            return SizedBox(width: 20.w);
+                          },
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 2,
+                          itemBuilder: (context, index) {
+                            return const HomeScreenCard(
+                              imageUrl: "Assets/Images/book3.png",
+                              heading: "Mobile App Design",
+                              currentPrice: "\$55.00 ",
+                              previousPrice: "\$65.00 ",
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-
+Widget _buildBottomSheet(
+  BuildContext context,
+  ScrollController scrollController,
+  double bottomSheetOffset,
+) {
+  return Material(
+    elevation: 2,
+    type: MaterialType.card,
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Create brand profile",
+                  style: AppStyles.subHeading1TextStyle),
+              SizedBox(
+                height: 20.h,
+              ),
+              CustomTextField(
+                icon: Image.asset(AppIcons.personIcon),
+                hintText: "Adam",
+                labelText: "Adam",
+                suffixIcon: InkWell(
+                  onTap: () {},
+                  child: const Icon(
+                    Icons.visibility_off_outlined,
+                    color: AppColors.grey,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                children: [
+                  Image.asset(AppIcons.editIcon),
+                  SizedBox(
+                    width: 22.w,
+                  ),
+                  Text(
+                    "Description",
+                    style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 4.h,
+              ),
+              const CustomTextField(
+                hintText: "Tell us about your brand",
+                maxLines: 5,
+                borderRequired: true,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        Container(
+          height: 160.h,
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.sizeOf(context).width * 0.1, vertical: 24),
+          decoration: const BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(105),
+            ),
+            boxShadow: [
+              BoxShadow(color: AppColors.grey, blurRadius: 20),
+            ],
+          ),
+          width: double.infinity,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50.h,
+              ),
+              InkWell(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          elevation: 5,
+                          child: Container(
+                            width: 342,
+                            height: 249,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(22),
+                                color: Colors.white),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(AppIcons.tickIconGreen),
+                                  SizedBox(
+                                    height: 25.h,
+                                  ),
+                                  const Text(
+                                    "Brand added Successfully",
+                                    style: AppStyles.subHeading1TextStyle,
+                                  ),
+                                ]),
+                          ),
+                        );
+                      }).then((value) => Navigator.pop(context));
+                },
+                child: CustomButton(
+                  buttonText: "Create",
+                  height: 54.h,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
 class HomePageCarousel extends StatefulWidget {
   const HomePageCarousel({

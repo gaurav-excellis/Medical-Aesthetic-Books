@@ -8,7 +8,7 @@ import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/new_brand_page.dart';
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/profile_page.dart';
 
-import 'package:medical_aesthetic_books/Features/Request/View/request_screen.dart';
+import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/category_screen.dart';
 
 class HomeScreen extends StatefulWidget {
  const HomeScreen({super.key});
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   List<Widget> screenPagesBody = const [
     HomePage(),
-    RequestScreen(),
+    CategoryScreen(),
     BrandProfilePage(),
     NewBrandPage(),
     ProfilePage(),
