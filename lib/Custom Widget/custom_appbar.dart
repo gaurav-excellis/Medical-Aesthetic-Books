@@ -7,8 +7,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
   final PreferredSizeWidget? bottom;
   final Widget? leading;
+  final Color backgroundColor;
   final List<Widget>? trailingWidget;
   const CustomAppBar({
+    this.backgroundColor = Colors.white,
     this.leading,
     super.key,
     this.trailingWidget,
@@ -24,13 +26,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      
       leading: leading,
       automaticallyImplyLeading: leading ==null ? false: true,
       elevation: 1,
       
       bottom: bottom,
       
-      backgroundColor: AppColors.white,
+      backgroundColor: backgroundColor,
       centerTitle: false,
       title:  Text(
         title,

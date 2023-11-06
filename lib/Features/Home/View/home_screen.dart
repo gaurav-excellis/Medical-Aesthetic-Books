@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
-import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/brand_profile_page.dart';
+import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/my_orders_page.dart';
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/home_page.dart';
-import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/new_brand_page.dart';
+import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/my_wishlist_page.dart';
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/profile_page.dart';
 
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/category_screen.dart';
@@ -22,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> screenPagesBody = const [
     HomePage(),
     CategoryScreen(),
-    BrandProfilePage(),
-    NewBrandPage(),
+    MyOrdersPage(),
+    MyWishlistPage(),
     ProfilePage(),
   ];
 

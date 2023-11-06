@@ -2,16 +2,19 @@ import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_button.dart';
-import 'package:medical_aesthetic_books/Custom%20Widget/custom_textfield.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card_2.dart';
+import 'package:medical_aesthetic_books/Features/About%20Us/View/about_us_screen.dart';
+import 'package:medical_aesthetic_books/Features/Address/View/manage_address_screen.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_newly_launched_widgets.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_offer_widget.dart';
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
+import 'package:medical_aesthetic_books/Features/Orders/track_order.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,18 +27,17 @@ class HomePage extends StatelessWidget {
         actions: [
           InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (newContext) => const NotificationsScreen(),
-                  ),
-                );
+                Get.to(()=>  NotificationsScreen(),);
               },
               child: Image.asset(AppIcons.notificationIcon)),
           SizedBox(
             width: 15.w,
           ),
-          Image.asset(AppImages.profileImage),
+          InkWell(
+            onTap: (){
+              Get.to(() => const ManageAddressScreen(),);
+            },
+            child: Image.asset(AppImages.profileImage)),
           SizedBox(
             width: 24.w,
           ),
@@ -225,7 +227,9 @@ class HomePage extends StatelessWidget {
                           ///feature collection
                           HeadingWidget(
                             heading: "Featured Collection",
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(()=> const TrackOrder());
+                            },
                           ),
 
                           SizedBox(
@@ -341,9 +345,13 @@ class HomePage extends StatelessWidget {
                 color: AppColors.lightBlue,
                 child: Column(
                   children: [
+
+                    //NEWLY LAUNCHED HEADER
                     HeadingWidget(
                       heading: "Newly Launched",
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(()=> const AboutUsScreen());
+                      },
                     ),
                     SizedBox(
                       height: 360.h,
@@ -397,129 +405,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget _buildBottomSheet(
-  BuildContext context,
-  ScrollController scrollController,
-  double bottomSheetOffset,
-) {
-  return Material(
-    elevation: 2,
-    type: MaterialType.card,
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Create brand profile",
-                  style: AppStyles.subHeading1TextStyle),
-              SizedBox(
-                height: 20.h,
-              ),
-              CustomTextField(
-                icon: Image.asset(AppIcons.personIcon),
-                hintText: "Adam",
-                labelText: "Adam",
-                suffixIcon: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.visibility_off_outlined,
-                    color: AppColors.grey,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                children: [
-                  Image.asset(AppIcons.editIcon),
-                  SizedBox(
-                    width: 22.w,
-                  ),
-                  Text(
-                    "Description",
-                    style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              const CustomTextField(
-                hintText: "Tell us about your brand",
-                maxLines: 5,
-                borderRequired: true,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-            ],
-          ),
-        ),
-        const Spacer(),
-        Container(
-          height: 160.h,
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.sizeOf(context).width * 0.1, vertical: 24),
-          decoration: const BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(105),
-            ),
-            boxShadow: [
-              BoxShadow(color: AppColors.grey, blurRadius: 20),
-            ],
-          ),
-          width: double.infinity,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50.h,
-              ),
-              InkWell(
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          elevation: 5,
-                          child: Container(
-                            width: 342,
-                            height: 249,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(22),
-                                color: Colors.white),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(AppIcons.tickIconGreen),
-                                  SizedBox(
-                                    height: 25.h,
-                                  ),
-                                  const Text(
-                                    "Brand added Successfully",
-                                    style: AppStyles.subHeading1TextStyle,
-                                  ),
-                                ]),
-                          ),
-                        );
-                      }).then((value) => Navigator.pop(context));
-                },
-                child: CustomButton(
-                  buttonText: "Create",
-                  height: 54.h,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-}
 
 class HomePageCarousel extends StatefulWidget {
   const HomePageCarousel({

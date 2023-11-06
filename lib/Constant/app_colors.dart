@@ -30,6 +30,13 @@ class AppColors{
 
   static const Color cardGrey = Color(0xffa6a6a6);
   static const Color cardGreyText = Color(0xff1e1e1e);
+
+
+  static const Color notificationCardColor1 = Color(0xffFFDFA0);
+  static const Color notificationCardColor2 = Color(0xffFFCBB1);
+  static const Color notificationCardColor3 = Color(0xffE9CDFF);
+  static const Color notificationCardColor4 = Color(0xffDEFFAC);
+ 
   
   
   

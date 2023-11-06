@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
-import 'package:medical_aesthetic_books/Constant/app_styles.dart';
+
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
-import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card.dart';
+
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card_2.dart';
-import 'package:medical_aesthetic_books/Features/Home/View/Product%20Detail/product_detail_screen.dart';
+import 'package:medical_aesthetic_books/Features/Products/View/product_detail_screen.dart';
 
 class CategoryWiseScreen extends StatelessWidget {
   final String title;
@@ -78,7 +78,7 @@ class CategoryWiseScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: (){
-                        Get.to(() => ProductDetailsScreen(title: "Anti-racism book"),);
+                        Get.to(() => const ProductDetailsScreen(title: "Anti-racism book"),);
                       },
                       child: const  HomeScreenCard2(
                         imageUrl: "Assets/Images/book3.png",

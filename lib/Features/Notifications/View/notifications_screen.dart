@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
+import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 
 class NotificationsScreen extends StatelessWidget {
-  const NotificationsScreen({Key? key}) : super(key: key);
+  NotificationsScreen({Key? key}) : super(key: key);
+  final List<Color> cardColorList = [
+    AppColors.notificationCardColor1,
+    AppColors.notificationCardColor2,
+    AppColors.notificationCardColor3,
+    AppColors.notificationCardColor4,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +40,23 @@ class NotificationsScreen extends StatelessWidget {
                             left: 15, top: 12, right: 16, bottom: 18),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: Colors.grey.shade300),
-                        child: const Text(
-                          "This is demo notification message!\nHope you'd like it.",
-                          maxLines: 2,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                            color: cardColorList[index % 4]),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Lorem ipsum dolor sit amet consectetur.",
+                              style: AppStyles.subHeading1TextStyle
+                                  .copyWith(fontSize: 16.sp),
+                            ),
+                            SizedBox(height: 8.h,),
+                            Text(
+                              "Lorem ipsum dolor sit amet consectetur. Amet lobortis porttitor vitae aliquet eu. Tortor leo fringilla leo enim tempus morbi nunc. Amet consequat felis ultricies morbi turpis fringilla. Euismod gravida convallis vulputate in. ",
+                              style: AppStyles.normalTextStyle
+                                  .copyWith(fontSize: 12.sp),
+                            )
+                          ],
                         ),
                       ),
                       const SizedBox(
@@ -49,7 +66,7 @@ class NotificationsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "06 Oct, 2023",
+                            "06.10.23",
                             style: TextStyle(
                               fontSize: 12,
                               fontStyle: FontStyle.italic,
