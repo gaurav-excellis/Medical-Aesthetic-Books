@@ -11,19 +11,24 @@ import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card_2.dart';
 import 'package:medical_aesthetic_books/Features/About%20Us/View/about_us_screen.dart';
 import 'package:medical_aesthetic_books/Features/Address/View/manage_address_screen.dart';
+import 'package:medical_aesthetic_books/Features/Home/Controller/my_drawer_controller.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_newly_launched_widgets.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_offer_widget.dart';
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 import 'package:medical_aesthetic_books/Features/Orders/track_order.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<MyDrawerController> {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset(AppIcons.drawerIcon),
+        leading: InkWell(
+          onTap: (){
+            controller.toggleDrawer();
+          },
+          child: Image.asset(AppIcons.drawerIcon)),
         actions: [
           InkWell(
               onTap: () {
@@ -35,7 +40,7 @@ class HomePage extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              Get.to(() => const ManageAddressScreen(),);
+              
             },
             child: Image.asset(AppImages.profileImage)),
           SizedBox(
@@ -228,7 +233,7 @@ class HomePage extends StatelessWidget {
                           HeadingWidget(
                             heading: "Featured Collection",
                             onTap: () {
-                              Get.to(()=> const TrackOrder());
+                              
                             },
                           ),
 
@@ -350,7 +355,7 @@ class HomePage extends StatelessWidget {
                     HeadingWidget(
                       heading: "Newly Launched",
                       onTap: () {
-                        Get.to(()=> const AboutUsScreen());
+                        
                       },
                     ),
                     SizedBox(
