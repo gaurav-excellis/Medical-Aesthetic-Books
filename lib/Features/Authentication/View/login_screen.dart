@@ -94,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                                builder: (context) =>const HomeScreen()));
                       },
                       child: const CustomButton(buttonText: buttonText),
                     ),

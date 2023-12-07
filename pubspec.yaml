@@ -41,6 +41,7 @@ dependencies:
   flutter_carousel_widget: ^2.1.0
   flutter_snake_navigationbar: ^0.6.1
   bottom_sheet: ^4.0.0
+  flutter_zoom_drawer: ^3.1.1
 
 dev_dependencies:
   flutter_test:

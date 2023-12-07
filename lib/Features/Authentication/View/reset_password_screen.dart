@@ -78,7 +78,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (newContext) =>  HomeScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (newContext) => const  HomeScreen()));
                       },
                       child: const CustomButton(buttonText: buttonText),
                     ),
