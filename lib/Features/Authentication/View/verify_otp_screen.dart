@@ -160,7 +160,7 @@ class VerifyOtpScreen extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (newContext) => const LoginScreen(),
+                                builder: (newContext) =>  LoginScreen(),
                               ),
                             );
                           },

@@ -2,10 +2,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
+import 'package:medical_aesthetic_books/Features/Home/View/home_screen.dart';
 import 'package:medical_aesthetic_books/Features/Intro%20Screen/View/intro_screen.dart';
-
-
+import 'package:medical_aesthetic_books/Utils/shared_preference_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -20,9 +22,19 @@ class _SplashScreenPageState extends State<SplashScreen> {
   String? userToken;
   bool isSeen = false;
   _startNextScreen() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (_) => IntroScreen()));
-
+    Future.delayed(const Duration(milliseconds: 1500), () async {
+      var sharedPrep = SharedPref();
+      String? token = await sharedPrep.getUserToken();
+      if (await sharedPrep.getIsFirstTime() ?? true) {
+        Get.off(() => const IntroScreen());
+      } else {
+        if (token != null) {
+          Get.off(() => const HomeScreen());
+        } else {
+          navigateToIntroScreen();
+        }
+      }
+    });
     // doNavigate(
     //     route: userToken == null
     //         ? isSeen == false
@@ -30,6 +42,11 @@ class _SplashScreenPageState extends State<SplashScreen> {
     //             : LoginScreen()
     //         : DashBoardScreen(),
     //     context: context);
+  }
+
+  void navigateToIntroScreen(){
+    Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => IntroScreen()));
   }
 
   // void getUserToken() async {
@@ -48,20 +65,21 @@ class _SplashScreenPageState extends State<SplashScreen> {
   @override
   void initState() {
     // getUserToken();
-    startTime();
+    _startNextScreen();
+
+    
     super.initState();
   }
 
-  startTime() async {
-    var duration = const Duration(seconds: 3);
-    return Timer(duration, _startNextScreen);
-  }
+  // startTime() async {
+  //   var duration = const Duration(seconds: 3);
+  //   return Timer(duration, _startNextScreen);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white),
+      decoration: BoxDecoration(color: Colors.white),
       child: Center(
         child: Image.asset(
           AppIcons.appLogo,

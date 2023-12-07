@@ -82,7 +82,7 @@ class IntroFavBooks extends StatelessWidget {
                   Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (newContext) => const LoginScreen(),
+                            builder: (newContext) =>  LoginScreen(),
                           ),
                         );
                 },
@@ -95,7 +95,7 @@ class IntroFavBooks extends StatelessWidget {
                   Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (newContext) => const LoginScreen(),
+                            builder: (newContext) =>  LoginScreen(),
                           ),
                         );
                 },
