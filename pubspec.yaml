@@ -42,6 +42,7 @@ dependencies:
   flutter_snake_navigationbar: ^0.6.1
   bottom_sheet: ^4.0.0
   flutter_zoom_drawer: ^3.1.1
+  shared_preferences: ^2.2.2
 
   
 

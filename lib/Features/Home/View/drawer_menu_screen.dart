@@ -10,6 +10,8 @@ import 'package:medical_aesthetic_books/Features/Address/View/manage_address_scr
 import 'package:medical_aesthetic_books/Features/Home/Controller/my_drawer_controller.dart';
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 import 'package:medical_aesthetic_books/Features/Orders/track_order.dart';
+import 'package:medical_aesthetic_books/Features/Splash%20Screen/splash_screen.dart';
+import 'package:medical_aesthetic_books/Utils/shared_preference_service.dart';
 
 class DrawerMenuScreen extends GetView<MyDrawerController> {
   const DrawerMenuScreen({super.key});
@@ -37,7 +39,7 @@ class DrawerMenuScreen extends GetView<MyDrawerController> {
               SizedBox(
                 height: 16.h,
               ),
-              Divider(
+              const Divider(
                 thickness: 0.5,
                 color: Colors.white,
               ),
@@ -46,57 +48,91 @@ class DrawerMenuScreen extends GetView<MyDrawerController> {
               ),
               Text(
                 "YOUR INFORMATION",
-                style: AppStyles.normalTextStyle.copyWith(color: Colors.white70, letterSpacing: 2),
+                style: AppStyles.normalTextStyle
+                    .copyWith(color: Colors.white70, letterSpacing: 2),
               ),
-
-                MyDrawerItems(title: "Track Your Order", onTap: (){
-                      controller.toggleDrawer();
-                  Get.to(()=> const TrackOrder());
-                },iconUrl: "Assets/Icon/drawer_track_order.png",),
-
-                MyDrawerItems(title: "Help Support", onTap: (){
+              MyDrawerItems(
+                title: "Track Your Order",
+                onTap: () {
                   controller.toggleDrawer();
-                },iconUrl: "Assets/Icon/drawer_support.png",),
-
-                MyDrawerItems(title: "Address", onTap: (){
-                  Get.to(() => const ManageAddressScreen(),);
+                  Get.to(() => const TrackOrder());
+                },
+                iconUrl: "Assets/Icon/drawer_track_order.png",
+              ),
+              MyDrawerItems(
+                title: "Help Support",
+                onTap: () {
                   controller.toggleDrawer();
-                },iconUrl: "Assets/Icon/drawer_address.png",),
-
-                MyDrawerItems(title: "Payment Methods", onTap: (){
+                },
+                iconUrl: "Assets/Icon/drawer_support.png",
+              ),
+              MyDrawerItems(
+                title: "Address",
+                onTap: () {
+                  Get.to(
+                    () => const ManageAddressScreen(),
+                  );
                   controller.toggleDrawer();
-                },iconUrl: "Assets/Icon/drawer_payment.png",),
-
+                },
+                iconUrl: "Assets/Icon/drawer_address.png",
+              ),
+              MyDrawerItems(
+                title: "Payment Methods",
+                onTap: () {
+                  controller.toggleDrawer();
+                },
+                iconUrl: "Assets/Icon/drawer_payment.png",
+              ),
               SizedBox(
                 height: 37.h,
               ),
               Text(
                 "OTHER INFORMATION",
-                style: AppStyles.normalTextStyle.copyWith(color: Colors.white70, letterSpacing: 2),
+                style: AppStyles.normalTextStyle
+                    .copyWith(color: Colors.white70, letterSpacing: 2),
               ),
-
-              MyDrawerItems(title: "Share The App", onTap: (){
-                controller.toggleDrawer();
-              },iconUrl: "Assets/Icon/drawer_share.png",),
-
-                MyDrawerItems(title: "About Us", onTap: (){
-                   controller.toggleDrawer();
-                  Get.to(() =>const AboutUsScreen(),);
-                },iconUrl: "Assets/Icon/drawer_about_us.png",),
-
-                MyDrawerItems(title: "Rate Us", onTap: (){},iconUrl: "Assets/Icon/drawer_rate.png",),
-
-                MyDrawerItems(title: "Notification", onTap: (){
+              MyDrawerItems(
+                title: "Share The App",
+                onTap: () {
                   controller.toggleDrawer();
-                  Get.to(() => NotificationsScreen(),);
-                  
-                },iconUrl: "Assets/Icon/drawer_notification.png",),
-
-                MyDrawerItems(title: "Logout", onTap: (){
+                },
+                iconUrl: "Assets/Icon/drawer_share.png",
+              ),
+              MyDrawerItems(
+                title: "About Us",
+                onTap: () {
+                  controller.toggleDrawer();
+                  Get.to(
+                    () => const AboutUsScreen(),
+                  );
+                },
+                iconUrl: "Assets/Icon/drawer_about_us.png",
+              ),
+              MyDrawerItems(
+                title: "Rate Us",
+                onTap: () {},
+                iconUrl: "Assets/Icon/drawer_rate.png",
+              ),
+              MyDrawerItems(
+                title: "Notification",
+                onTap: () {
+                  controller.toggleDrawer();
+                  Get.to(
+                    () => NotificationsScreen(),
+                  );
+                },
+                iconUrl: "Assets/Icon/drawer_notification.png",
+              ),
+              MyDrawerItems(
+                title: "Logout",
+                onTap: () {
                   log("logout pressed");
                   controller.toggleDrawer();
-                },iconUrl: "Assets/Icon/drawer_logout.png",),
-
+                  SharedPref().deleteAllData();
+                  Get.off(() => const SplashScreen());
+                },
+                iconUrl: "Assets/Icon/drawer_logout.png",
+              ),
             ],
           ),
         ),
@@ -118,8 +154,13 @@ class MyDrawerItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-     onTap: onTap,
-     leading: Image.asset(iconUrl),
-    title: Text(title, style: AppStyles.normalTextStyle.copyWith(fontSize: 16, color: Colors.white),) ,);
+      onTap: onTap,
+      leading: Image.asset(iconUrl),
+      title: Text(
+        title,
+        style: AppStyles.normalTextStyle
+            .copyWith(fontSize: 16, color: Colors.white),
+      ),
+    );
   }
 }

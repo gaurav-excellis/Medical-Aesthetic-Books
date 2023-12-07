@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final String? labelText;
   final bool borderRequired;
   final int maxLines;
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     this.labelText,
+    this.controller,
     this.hintText,
     this.maxLines = 1,
     this.borderRadius = 0,
@@ -34,10 +36,17 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       keyboardType: textInputType,
       inputFormatters: inputFormatters,
       maxLength: maxLength,
       maxLines: maxLines,
+      validator: (value) {
+        if(value!.isEmpty){
+          return "$labelText can't be empty";
+        }
+        return null;
+      },
       readOnly: readOnly,
       obscureText: isPassword,
       decoration: InputDecoration(
