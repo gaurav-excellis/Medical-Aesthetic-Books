@@ -18,6 +18,10 @@ class AppStyles {
     fontSize: 24,
     fontWeight: FontWeight.w600,
   );
+  static const TextStyle screenHeading2TextStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
 
   static const TextStyle subHeading1TextStyle = TextStyle(
     fontSize: 18,

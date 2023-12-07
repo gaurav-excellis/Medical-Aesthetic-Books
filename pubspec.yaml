@@ -29,7 +29,7 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  flutter_svg: ^2.0.7
+  flutter_svg: ^2.0.9
   flutter_screenutil: ^5.5.4
   get: ^4.6.5
   intl: ^0.18.1
@@ -41,6 +41,9 @@ dependencies:
   flutter_carousel_widget: ^2.1.0
   flutter_snake_navigationbar: ^0.6.1
   bottom_sheet: ^4.0.0
+  flutter_zoom_drawer: ^3.1.1
+
+  
 
 dev_dependencies:
   flutter_test:

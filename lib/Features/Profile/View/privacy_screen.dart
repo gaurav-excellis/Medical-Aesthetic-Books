@@ -63,7 +63,7 @@ class PrivacyScreen extends StatelessWidget {
                 bottomSheetColor: AppColors.white,
               );
             },
-            child: CustomButton(buttonText: "Change Password"),
+            child:const CustomButton(buttonText: "Change Password"),
           ),
         ]),
       ),
