@@ -1,8 +1,10 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:medical_aesthetic_books/Constant/api_path.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
@@ -16,7 +18,7 @@ import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_offer_wi
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 
 class HomePage extends GetView<MyDrawerController> {
-   HomePage({super.key});
+  HomePage({super.key});
   final profileController = Get.put(ProfileController());
 
   @override
@@ -24,24 +26,46 @@ class HomePage extends GetView<MyDrawerController> {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          onTap: (){
-            controller.toggleDrawer();
-          },
-          child: Image.asset(AppIcons.drawerIcon)),
+            onTap: () {
+              controller.toggleDrawer();
+            },
+            child: Image.asset(AppIcons.drawerIcon)),
         actions: [
           InkWell(
               onTap: () {
-                Get.to(()=>  NotificationsScreen(),);
+                Get.to(
+                  () => NotificationsScreen(),
+                );
               },
               child: Image.asset(AppIcons.notificationIcon)),
           SizedBox(
             width: 15.w,
           ),
           InkWell(
-            onTap: (){
-              
-            },
-            child: Image.asset(AppImages.profileImage)),
+            onTap: () {},
+            child:
+                //Image.asset(AppImages.profileImage)),
+                Obx(
+                  ()=>
+                  //  CachedNetworkImage(
+                  //               imageUrl: "${ApiPath.imageUrl}${profileController.userProfileModel.value.data?.profilePicture}" ,
+
+                  //             ),
+                  (profileController.userProfileModel.value.data != null &&
+                          profileController.userProfileModel.value.data
+                                  ?.profilePicture !=
+                              null)
+                      ? CircleAvatar(
+                          radius: 36.sp,
+                          backgroundImage: NetworkImage(
+                              "${ApiPath.imageUrl}${profileController.userProfileModel.value.data?.profilePicture}"))
+                      : CircleAvatar(
+                          radius: 36.sp,
+                          backgroundImage:
+                              AssetImage(AppImages.profileImage),
+                        ),
+                ),
+          ),
           SizedBox(
             width: 24.w,
           ),
@@ -61,16 +85,15 @@ class HomePage extends GetView<MyDrawerController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Obx(
-                        ()=>
-                          Text(
+                      Obx(
+                        () => Text(
                           "Hey ${profileController.userProfileModel.value.data?.name.toString().split(' ')[0]}!",
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w600,
                           ),
-                                               ),
-                       ),
+                        ),
+                      ),
                       const Text(
                         "Lorem ipsum dolor sit amet consectetur. ",
                         style: TextStyle(
@@ -167,13 +190,14 @@ class HomePage extends GetView<MyDrawerController> {
                                                       ),
                                                       Expanded(
                                                         child: GridView.builder(
-                                                          itemCount: 15,
+                                                            itemCount: 15,
                                                             gridDelegate:
-                                                               const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                const SliverGridDelegateWithFixedCrossAxisCount(
                                                               crossAxisCount: 2,
                                                               mainAxisSpacing:
                                                                   5,
-                                                              childAspectRatio: 2/3,
+                                                              childAspectRatio:
+                                                                  2 / 3,
                                                               crossAxisSpacing:
                                                                   5,
                                                             ),
@@ -234,9 +258,7 @@ class HomePage extends GetView<MyDrawerController> {
                           ///feature collection
                           HeadingWidget(
                             heading: "Featured Collection",
-                            onTap: () {
-                              
-                            },
+                            onTap: () {},
                           ),
 
                           SizedBox(
@@ -352,13 +374,10 @@ class HomePage extends GetView<MyDrawerController> {
                 color: AppColors.lightBlue,
                 child: Column(
                   children: [
-
                     //NEWLY LAUNCHED HEADER
                     HeadingWidget(
                       heading: "Newly Launched",
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                     ),
                     SizedBox(
                       height: 360.h,
@@ -411,7 +430,6 @@ class HomePage extends GetView<MyDrawerController> {
     );
   }
 }
-
 
 class HomePageCarousel extends StatefulWidget {
   const HomePageCarousel({

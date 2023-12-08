@@ -16,7 +16,7 @@ class HomeScreenCard2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 252.h,
+      
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -25,7 +25,7 @@ class HomeScreenCard2 extends StatelessWidget {
         children: [
           Column(children: [
             Container(
-              height: 126.h,
+              height: 120.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
               ),

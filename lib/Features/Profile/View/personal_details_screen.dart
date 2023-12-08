@@ -1,18 +1,22 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/profile_controller.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/update_profile_controller.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_button.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_textfield.dart';
 import 'package:medical_aesthetic_books/Features/Home/Controller/personal_screen_controller.dart';
 
 class PersonalDetailsScreen extends StatelessWidget {
-  const PersonalDetailsScreen({super.key});
+   PersonalDetailsScreen({super.key});
+  final profileController = Get.find<ProfileController>();
   final String firstName = "Adam",
       lastName = "Smith",
       mobileNumber = "+1 (415) 555 3890",
@@ -52,9 +56,12 @@ class PersonalDetailsScreen extends StatelessWidget {
                     "First Name",
                     style: AppStyles.normalTextStyle,
                   ),
-                  Text(
-                    firstName,
-                    style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                  Obx(
+                    ()=>
+                     Text(
+                      (profileController.userProfileModel.value.data!.name!.split(" ").length > 1) ? profileController.userProfileModel.value.data!.name!.split(" ")[0] : profileController.userProfileModel.value.data?.name ?? "NAN",
+                      style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                    ),
                   ),
                   SizedBox(
                     height: 27.h,
@@ -63,9 +70,18 @@ class PersonalDetailsScreen extends StatelessWidget {
                     "Last Name",
                     style: AppStyles.normalTextStyle,
                   ),
-                  Text(
-                    lastName,
-                    style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                  Obx(
+                    ()=>
+                     Text(
+                      (profileController.userProfileModel.value.data!.name!
+                                  .split(" ")
+                                  .length >
+                              1)
+                          ? profileController.userProfileModel.value.data!.name!
+                              .split(" ")[1]
+                          : "",
+                      style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                    ),
                   ),
                   SizedBox(
                     height: 27.h,
@@ -74,9 +90,12 @@ class PersonalDetailsScreen extends StatelessWidget {
                     "Mobile Number",
                     style: AppStyles.normalTextStyle,
                   ),
-                  Text(
-                    mobileNumber,
-                    style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                  Obx(
+                    ()=>
+                     Text(
+                      profileController.userProfileModel.value.data?.phone ?? "",
+                      style: AppStyles.normalTextStyle.copyWith(fontSize: 16),
+                    ),
                   ),
                   SizedBox(
                     height: 27.h,
@@ -85,10 +104,13 @@ class PersonalDetailsScreen extends StatelessWidget {
                     "Email ID",
                     style: AppStyles.normalTextStyle,
                   ),
-                  Text(
-                    emailId,
-                    style: AppStyles.normalTextStyle
-                        .copyWith(fontSize: 16, color: AppColors.grey),
+                  Obx(
+                    ()=>
+                     Text(
+                      profileController.userProfileModel.value.data?.email ?? "",
+                      style: AppStyles.normalTextStyle
+                          .copyWith(fontSize: 16, color: AppColors.grey),
+                    ),
                   ),
                   SizedBox(
                     height: 27.h,
@@ -177,6 +199,9 @@ Widget _buildBottomSheet(
   ScrollController scrollController,
   double bottomSheetOffset,
 ) {
+
+  final updateProfileController = Get.put(UpdateProfileController());
+  final _formKey = GlobalKey<FormState>();
   return Material(
     elevation: 2,
     type: MaterialType.card,
@@ -199,13 +224,16 @@ Widget _buildBottomSheet(
                         height: 20.h,
                       ),
                       CustomTextField(
+
+                        controller: updateProfileController.firstNameController.value,
                         icon: Image.asset(AppIcons.personIcon),
-                        hintText: "Adam",
+                        hintText: "First Name",
                       ),
                       SizedBox(
                         height: 20.h,
                       ),
                       CustomTextField(
+                        controller: updateProfileController.lastNameController.value,
                         icon: Image.asset(AppIcons.personIcon),
                         hintText: "Last Name",
                       ),
@@ -213,6 +241,9 @@ Widget _buildBottomSheet(
                         height: 20.h,
                       ),
                       CustomTextField(
+                        textInputType: TextInputType.phone,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        controller: updateProfileController.phoneController.value,
                         icon: Image.asset(AppIcons.phoneIcon),
                         hintText: "Mobile Number",
                       ),
@@ -220,8 +251,9 @@ Widget _buildBottomSheet(
                         height: 20.h,
                       ),
                       CustomTextField(
+                        textInputType: TextInputType.emailAddress,
                         icon: Image.asset(AppIcons.atTheRateIcon),
-                        hintText: "smith02@gmail.com",
+                        hintText: "Email",
                       ),
                       SizedBox(
                         height: 20.h,
@@ -241,6 +273,7 @@ Widget _buildBottomSheet(
                         height: 20.h,
                       ),
                       CustomTextField(
+                        textInputType: TextInputType.number,
                         icon: Image.asset(AppIcons.locationIcon),
                         hintText: "Zipcode",
                       ),
@@ -321,10 +354,15 @@ Widget _buildBottomSheet(
         Padding(
           padding: EdgeInsets.only(top: 30.h, bottom: 20.h),
           child: InkWell(
-            onTap: () {},
-            child: CustomButton(
-              buttonText: "Save",
-              height: 54.h,
+            onTap: () {
+              updateProfileController.validateUpdateProfileFields();
+            },
+            child: Obx(
+              ()=>
+              updateProfileController.isUpdating.value ? const Center(child: CircularProgressIndicator.adaptive(),): CustomButton(
+                buttonText: "Save",
+                height: 54.h,
+              ),
             ),
           ),
         ),
