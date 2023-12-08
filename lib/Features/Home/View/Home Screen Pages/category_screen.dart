@@ -7,6 +7,7 @@ import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/colorful_category_card.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 import 'package:medical_aesthetic_books/Features/Category/category_wise_screen.dart';
+import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -50,16 +51,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
           title: "",
           trailingWidget: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(() => NotificationsScreen());
+              },
               child: Image.asset(AppIcons.notificationIcon),
             ),
             SizedBox(
               width: 18.w,
             ),
-            Image.asset(AppImages.profileImage),
-            SizedBox(
-              width: 24.w,
-            ),
+            
+            
           ],
         ),
         body: Padding(

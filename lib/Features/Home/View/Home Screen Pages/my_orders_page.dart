@@ -8,6 +8,7 @@ import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/my_orders_card_widget.dart';
+import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
 import 'package:medical_aesthetic_books/Features/Orders/order_summary_page.dart';
 
 class MyOrdersPage extends StatelessWidget {
@@ -19,7 +20,11 @@ class MyOrdersPage extends StatelessWidget {
       appBar: CustomAppBar(
         title: "My Orders",
         trailingWidget: [
-          Image.asset(AppIcons.notificationIcon),
+          InkWell(
+            onTap: (){
+              Get.to(() => NotificationsScreen());
+            },
+            child: Image.asset(AppIcons.notificationIcon)),
           SizedBox(
             width: 25.w,
           ),
