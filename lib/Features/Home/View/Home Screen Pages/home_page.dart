@@ -6,19 +6,18 @@ import 'package:get/get.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/profile_controller.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_button.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/home_screen_card_2.dart';
-import 'package:medical_aesthetic_books/Features/About%20Us/View/about_us_screen.dart';
-import 'package:medical_aesthetic_books/Features/Address/View/manage_address_screen.dart';
 import 'package:medical_aesthetic_books/Features/Home/Controller/my_drawer_controller.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_newly_launched_widgets.dart';
 import 'package:medical_aesthetic_books/Features/Home/Widgets/home_page_offer_widget.dart';
 import 'package:medical_aesthetic_books/Features/Notifications/View/notifications_screen.dart';
-import 'package:medical_aesthetic_books/Features/Orders/track_order.dart';
 
 class HomePage extends GetView<MyDrawerController> {
-  const HomePage({super.key});
+   HomePage({super.key});
+  final profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +61,16 @@ class HomePage extends GetView<MyDrawerController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Hey Kumari!",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                       Obx(
+                        ()=>
+                          Text(
+                          "Hey ${profileController.userProfileModel.value.data?.name.toString().split(' ')[0]}!",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                          ),
+                                               ),
+                       ),
                       const Text(
                         "Lorem ipsum dolor sit amet consectetur. ",
                         style: TextStyle(

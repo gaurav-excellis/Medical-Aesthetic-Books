@@ -5,6 +5,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/profile_controller.dart';
 import 'package:medical_aesthetic_books/Features/Home/Controller/my_drawer_controller.dart';
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/my_orders_page.dart';
 import 'package:medical_aesthetic_books/Features/Home/View/Home%20Screen%20Pages/home_page.dart';
@@ -23,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  List<Widget> screenPagesBody = const [
+  List<Widget> screenPagesBody =  [
     HomePage(),
     CategoryScreen(),
     MyOrdersPage(),
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfilePage(),
   ];
   final drawerController = Get.put(MyDrawerController());
+  final profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {

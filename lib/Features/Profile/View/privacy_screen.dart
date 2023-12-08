@@ -1,9 +1,12 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/password_controller.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/profile_controller.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_button.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_textfield.dart';
@@ -75,7 +78,13 @@ Widget _buildBottomSheet(
   BuildContext context,
   ScrollController scrollController,
   double bottomSheetOffset,
-) {
+) 
+
+
+{
+
+  final passwordController= Get.put(PasswordController());
+  final _formKey = GlobalKey<FormState>();
   return Material(
     elevation: 2,
     type: MaterialType.card,
@@ -83,70 +92,104 @@ Widget _buildBottomSheet(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Change Password",
-                  style: AppStyles.subHeading1TextStyle),
-              SizedBox(
-                height: 20.h,
-              ),
-              CustomTextField(
-                icon: Image.asset(AppIcons.keyIcon),
-                hintText: "Old Password",
-                labelText: "Old Password",
-                suffixIcon: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.visibility_off_outlined,
-                    color: AppColors.grey,
+          child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Change Password",
+                    style: AppStyles.subHeading1TextStyle),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Obx(
+                  ()=>
+                   CustomTextField(
+                    
+                    controller: passwordController.oldPassController.value,
+                    icon: Image.asset(AppIcons.keyIcon),
+                    isPassword: passwordController.oldPassHidden.value,
+                    hintText: "Old Password",
+                    labelText: "Old Password",
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        passwordController.oldPassHidden.value = !passwordController.oldPassHidden.value;
+                      },
+                      child:  Icon(
+                        passwordController
+                            .oldPassHidden.value ? Icons.visibility_off_outlined : Icons.visibility,
+                        color: AppColors.grey,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              CustomTextField(
-                icon: Image.asset(AppIcons.keyIcon),
-                hintText: "New Password",
-                labelText: "New Password",
-                suffixIcon: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.visibility_off_outlined,
-                    color: AppColors.grey,
+                SizedBox(
+                  height: 20.h,
+                ),
+                Obx(
+                  ()=>
+                   CustomTextField(
+                     controller: passwordController.newPassController.value,
+                    icon: Image.asset(AppIcons.keyIcon),
+                    isPassword: passwordController.newPassHidden.value,
+                    hintText: "New Password",
+                    labelText: "New Password",
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        passwordController.newPassHidden.value = !passwordController.newPassHidden.value;
+                      },
+                      child:  Icon(
+                        passwordController.newPassHidden.value ? Icons.visibility_off_outlined : Icons.visibility,
+                        color: AppColors.grey,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              CustomTextField(
-                icon: Image.asset(AppIcons.keyIcon),
-                hintText: "Confirm Password",
-                labelText: "Confirm Password",
-                suffixIcon: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.visibility_off_outlined,
-                    color: AppColors.grey,
+                SizedBox(
+                  height: 20.h,
+                ),
+                Obx(
+                  ()=>
+                   CustomTextField(
+                     controller: passwordController.confirmPassController.value,
+                    icon: Image.asset(AppIcons.keyIcon),
+                    hintText: "Confirm Password",
+                    isPassword: passwordController.confirmPassHidden.value,
+                    labelText: "Confirm Password",
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        passwordController.confirmPassHidden.value = !passwordController.confirmPassHidden.value;
+                      },
+                      child:  Icon(
+                       passwordController.confirmPassHidden.value ? Icons.visibility_off_outlined : Icons.visibility,
+                        color: AppColors.grey,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-            ],
+                SizedBox(
+                  height: 20.h,
+                ),
+              ],
+            ),
           ),
         ),
         const Spacer(),
         Padding(
           padding: EdgeInsets.only(top: 30.h, bottom: 25.h),
           child: InkWell(
-            onTap: () {},
-            child: CustomButton(
-              buttonText: "Save",
-              height: 54.h,
+            onTap: () {
+              if(_formKey.currentState!.validate()){
+                passwordController.validateChangePassFields();
+              }
+            },
+            child: Obx(
+              ()=> passwordController.isChanging.value ? const Center(child: CircularProgressIndicator.adaptive(),) :
+               CustomButton(
+                buttonText: "Save",
+                height: 54.h,
+              ),
             ),
           ),
         ),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:medical_aesthetic_books/Constant/app_colors.dart';
 import 'package:medical_aesthetic_books/Constant/app_styles.dart';
 import 'package:medical_aesthetic_books/Constant/icons_paths.dart';
+import 'package:medical_aesthetic_books/Controller/Profile/profile_controller.dart';
 import 'package:medical_aesthetic_books/Custom%20Widget/custom_appbar.dart';
 import 'package:medical_aesthetic_books/Features/Profile/View/personal_details_screen.dart';
 import 'package:medical_aesthetic_books/Features/Profile/View/privacy_screen.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+   ProfilePage({super.key});
+   final profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +62,13 @@ class ProfilePage extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Text(
-                    "Ars Kumari",
-                    style:
-                        AppStyles.subHeading1TextStyle.copyWith(fontSize: 22),
+                  Obx(
+                    ()=>
+                     Text(
+                      profileController.userProfileModel.value.data?.name ?? "Couldn't load",
+                      style:
+                          AppStyles.subHeading1TextStyle.copyWith(fontSize: 22),
+                    ),
                   ),
                   Text(
                     "San Francisco, CA",
@@ -84,14 +90,22 @@ class ProfilePage extends StatelessWidget {
                   color: AppColors.lightBlue,
                 ),
                 child: Column(children: [
-                  Text(
-                    "+1 (415) 555 3890",
-                    style: AppStyles.screenHeadingTextStyle
-                        .copyWith(fontSize: 22, fontWeight: FontWeight.w500),
+                  Obx(
+                    ()=>
+                     Text(
+                      profileController.userProfileModel.value.data?.phone ??
+                          "Couldn't load",
+                      style: AppStyles.screenHeadingTextStyle
+                          .copyWith(fontSize: 22, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                  Text(
-                    "smith94@gmail.com",
-                    style: AppStyles.normalTextStyle.copyWith(fontSize: 18),
+                  Obx(
+                    ()=>
+                     Text(
+                      profileController.userProfileModel.value.data?.email ??
+                          "Couldn't load",
+                      style: AppStyles.normalTextStyle.copyWith(fontSize: 18),
+                    ),
                   ),
                   
                 ]),
